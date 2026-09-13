@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science Olympiad — 5 Years — My Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #666;
+      --paper: #faf9f5;
+      --card: #ffffff;
+      --accent: #f2c94c;
+      --accent-soft: #fff3b8;
+      --border: #dedbd1;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(242,201,76,.14), transparent 22rem),
+        radial-gradient(circle at 90% 80%, rgba(242,201,76,.10), transparent 25rem),
+        var(--paper);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(0,0,0,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .page {
+      width: min(900px, 90vw);
+      min-height: 100vh;
+      margin: auto;
+      padding: 42px 0 70px;
+      position: relative;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+      font-size: .88rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .88rem;
+      transition: gap .2s ease, opacity .2s ease;
+    }
+
+    .back-link:hover {
+      gap: 12px;
+      opacity: .7;
+    }
+
+    .top-note {
+      color: var(--muted);
+    }
+
+    .page-header {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: "Caveat", cursive;
+      font-size: 1.7rem;
+      transform: rotate(-3deg);
+      margin-bottom: 5px;
+    }
+
+    .page-title {
+      font-family: "Caveat", cursive;
+      font-size: clamp(3.2rem, 8vw, 5.5rem);
+      font-weight: 600;
+      line-height: .9;
+      letter-spacing: -.03em;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title::after {
+      content: "";
+      position: absolute;
+      left: 4%;
+      right: -3%;
+      bottom: -10px;
+      height: 10px;
+      border-bottom: 4px solid var(--ink);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+
+    /* Photo */
+    .photo-frame {
+      max-width: 380px;
+      margin: 0 auto 56px;
+      position: relative;
+      transform: rotate(-1.5deg);
+    }
+
+    .photo-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 6px solid var(--card);
+      box-shadow: 0 18px 40px rgba(0,0,0,.14);
+    }
+
+    .photo-tape {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 90px;
+      height: 30px;
+      background: rgba(242,201,76,.55);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
+
+    .photo-caption {
+      text-align: center;
+      margin-top: 14px;
+      font-family: "Caveat", cursive;
+      font-size: 1.4rem;
+      color: var(--muted);
+      transform: rotate(-1deg);
+    }
+
+    /* Journey section */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 700px;
+      margin: 0 auto 26px;
+    }
+
+    .section-title span {
+      font-family: "Caveat", cursive;
+      font-size: 2rem;
+      white-space: nowrap;
+    }
+
+    .section-title .line {
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .content-card {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 36px 40px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.035);
+      transform: rotate(-.4deg);
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .content-card p {
+      margin: 0 0 16px;
+    }
+
+    .content-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Takeaways */
+    .takeaways {
+      max-width: 700px;
+      margin: 56px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .takeaway-card {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 26px 30px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.035);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .takeaway-card:nth-child(1) { transform: rotate(-.8deg); }
+    .takeaway-card:nth-child(2) { transform: rotate(.7deg); }
+    .takeaway-card:nth-child(3) { transform: rotate(-.5deg); }
+
+    .takeaway-card:hover {
+      transform: translateY(-4px) rotate(0deg);
+      border-color: #bbb6a8;
+      box-shadow: 0 16px 34px rgba(0,0,0,.08);
+    }
+
+    .takeaway-badge {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      font-family: "Caveat", cursive;
+      font-size: 1.9rem;
+      background: var(--accent-soft);
+    }
+
+    .takeaway-text {
+      font-family: "Caveat", cursive;
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    footer {
+      margin-top: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+    }
+
+    .hand {
+      font-family: "Caveat", cursive;
+      font-size: 1.35rem;
+      color: var(--ink);
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: 88vw;
+        padding-top: 28px;
+      }
+
+      .photo-frame {
+        max-width: 300px;
+      }
+
+      .content-card {
+        padding: 26px;
+      }
+
+      .takeaway-card {
+        padding: 20px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="topbar">
+      <a class="back-link" href="interests.html">← Interests</a>
+      <div class="top-note">Portfolio · 2026</div>
+    </div>
+
+    <section class="page-header">
+      <div class="eyebrow">Science Olympiad</div>
+      <h1 class="page-title">5 Years of Competing</h1>
+    </section>
+
+    <figure class="photo-frame">
+      <div class="photo-tape"></div>
+      <img src="so-medals.png" alt="Wearing two bronze medals after a Science Olympiad competition, in an Eastlake Science Olympiad sweatshirt">
+    </figure>
+    <p class="photo-caption">state championship day ✦</p>
+
+    <div class="section-title">
+      <span>My journey</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="content-card">
+      <p>
+            I have been participating in Science Olympiad since entering middle school, and my love for science has grown largely because of this competition. In high school, I largely started devoting more time and effort into Science Olympiad, and in 9th grade, I was the first person from our school to go to state in the past 5 years. In 10th grade, our whole school went to state, and I was able to podium for 2 of my 3 events. This experience taught that hard work and spending hours on a dedicated goal can pay off.
+
+      </p>
+    </div>
+
+    <div class="section-title" style="margin-top: 56px;">
+      <span>Takeaways</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="takeaways">
+
+      <div class="takeaway-card">
+        <div class="takeaway-badge">1</div>
+        <div class="takeaway-text">Practice makes perfect</div>
+      </div>
+
+      <div class="takeaway-card">
+        <div class="takeaway-badge">2</div>
+        <div class="takeaway-text">Consistency is key</div>
+      </div>
+
+      <div class="takeaway-card">
+        <div class="takeaway-badge">3</div>
+        <div class="takeaway-text">Even when you don't succeed the first time, there are always more chances to prove yourself</div>
+      </div>
+
+    </div>
+
+    <footer>
+      <span class="hand">made with curiosity ✦</span>
+      <span>© 2026</span>
+    </footer>
+
+  </main>
+</body>
+</html>

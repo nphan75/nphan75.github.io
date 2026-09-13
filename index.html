@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #666;
+      --paper: #faf9f5;
+      --card: #ffffff;
+      --accent: #f2c94c;
+      --accent-soft: #fff3b8;
+      --border: #dedbd1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(242,201,76,.14), transparent 22rem),
+        radial-gradient(circle at 90% 80%, rgba(242,201,76,.10), transparent 25rem),
+        var(--paper);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* subtle notebook/grid background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(0,0,0,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .page {
+      width: min(1180px, 90vw);
+      min-height: 100vh;
+      margin: auto;
+      padding: 42px 0 70px;
+      position: relative;
+    }
+
+    /* top bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 80px;
+      font-size: .88rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .tiny-mark {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--ink);
+      transform: rotate(45deg);
+    }
+
+    .top-note {
+      color: var(--muted);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: "Caveat", cursive;
+      font-size: 1.7rem;
+      transform: rotate(-3deg);
+      margin-bottom: 5px;
+    }
+
+    .name {
+      font-family: "Caveat", cursive;
+      font-size: clamp(5rem, 13vw, 10rem);
+      font-weight: 600;
+      line-height: .78;
+      letter-spacing: -.035em;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+    }
+
+    .name::after {
+      content: "";
+      position: absolute;
+      left: 4%;
+      right: -3%;
+      bottom: -13px;
+      height: 12px;
+      border-bottom: 4px solid var(--ink);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+
+    .intro {
+      margin: 38px auto 0;
+      max-width: 560px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    /* Decorative doodles */
+    .doodle {
+      position: absolute;
+      font-family: "Caveat", cursive;
+      color: #777;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .arrow {
+      left: 5%;
+      top: 90px;
+      font-size: 1.5rem;
+      transform: rotate(-12deg);
+    }
+
+    .star {
+      right: 7%;
+      top: 30px;
+      font-size: 2.5rem;
+      transform: rotate(12deg);
+    }
+
+    .spark {
+      left: 13%;
+      bottom: 0;
+      font-size: 1.7rem;
+      transform: rotate(10deg);
+    }
+
+    /* Navigation */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 100px 0 30px;
+    }
+
+    .section-title span:first-child {
+      font-family: "Caveat", cursive;
+      font-size: 2rem;
+    }
+
+    .line {
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      min-height: 145px;
+      padding: 28px 32px;
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.035);
+      overflow: hidden;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .nav-item:nth-child(1) {
+      transform: rotate(-1deg);
+    }
+
+    .nav-item:nth-child(2) {
+      transform: rotate(1deg);
+    }
+
+    .nav-item:hover {
+      transform: translateY(-7px) rotate(0deg);
+      border-color: #bbb6a8;
+      box-shadow: 0 18px 40px rgba(0,0,0,.09);
+    }
+
+    .number-box {
+      width: 70px;
+      height: 70px;
+      flex: 0 0 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--ink);
+      border-radius: 10px 13px 9px 12px;
+      font-family: "Caveat", cursive;
+      font-size: 2.9rem;
+      background: var(--accent-soft);
+      transform: rotate(-3deg);
+    }
+
+    .nav-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-label {
+      font-family: "Caveat", cursive;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: .9;
+    }
+
+    .nav-description {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .nav-arrow {
+      margin-left: auto;
+      font-size: 1.5rem;
+      opacity: .45;
+      transition: transform .2s ease;
+    }
+
+    .nav-item:hover .nav-arrow {
+      transform: translateX(5px);
+      opacity: 1;
+    }
+
+    /* footer */
+    footer {
+      margin-top: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+    }
+
+    .hand {
+      font-family: "Caveat", cursive;
+      font-size: 1.35rem;
+      color: var(--ink);
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: 88vw;
+        padding-top: 28px;
+      }
+
+      .topbar {
+        margin-bottom: 60px;
+      }
+
+      .doodle {
+        display: none;
+      }
+
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-item {
+        min-height: 125px;
+      }
+
+      .section-title {
+        margin-top: 75px;
+      }
+
+      footer {
+        margin-top: 75px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero {
+        animation: fadeUp .7s ease both;
+      }
+
+      .nav-item {
+        animation: fadeUp .7s ease both;
+      }
+
+      .nav-item:nth-child(2) {
+        animation-delay: .12s;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="topbar">
+      <div class="tiny-mark"></div>
+      <div class="top-note">Portfolio · 2026</div>
+    </div>
+
+    <section class="hero">
+      <div class="doodle arrow"></div>
+      <div class="doodle star">✦</div>
+      <div class="doodle spark">✎</div>
+
+      <div class="eyebrow">Hello, I'm   </div>
+
+      <!-- CHANGE YOUR NAME HERE -->
+      <h1 class="name">Nihar Phanse</h1>
+
+      <!-- CHANGE THIS DESCRIPTION IF YOU WANT -->
+      <p class="intro">
+        A collection of the things I've built, learned, competed in,
+        and cared about along the way.
+      </p>
+    </section>
+
+    <div class="section-title">
+      <span>Explore my world</span>
+      <div class="line"></div>
+    </div>
+
+    <nav class="nav-grid" aria-label="Main navigation">
+
+      <a class="nav-item" href="interests.html">
+        <div class="number-box">1</div>
+        <div class="nav-copy">
+          <div class="nav-label">Interests</div>
+          <div class="nav-description">The things I'm passionate about</div>
+        </div>
+        <div class="nav-arrow">→</div>
+      </a>
+
+      <a class="nav-item" href="projects.html">
+        <div class="number-box">2</div>
+        <div class="nav-copy">
+          <div class="nav-label">Projects</div>
+          <div class="nav-description">Things I've created & worked on</div>
+        </div>
+        <div class="nav-arrow">→</div>
+      </a>
+
+    </nav>
+
+    <footer>
+      <span class="hand">made with curiosity ✦</span>
+      <span>© 2026</span>
+    </footer>
+
+  </main>
+</body>
+</html>

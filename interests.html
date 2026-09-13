@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interests — My Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #666;
+      --paper: #faf9f5;
+      --card: #ffffff;
+      --accent: #f2c94c;
+      --accent-soft: #fff3b8;
+      --border: #dedbd1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(242,201,76,.14), transparent 22rem),
+        radial-gradient(circle at 90% 80%, rgba(242,201,76,.10), transparent 25rem),
+        var(--paper);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .32;
+      background-image:
+        linear-gradient(rgba(0,0,0,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .page {
+      width: min(1180px, 90vw);
+      min-height: 100vh;
+      margin: auto;
+      padding: 42px 0 70px;
+      position: relative;
+    }
+
+    /* top bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+      font-size: .88rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .tiny-mark {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--ink);
+      transform: rotate(45deg);
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .88rem;
+      transition: gap .2s ease, opacity .2s ease;
+    }
+
+    .back-link:hover {
+      gap: 12px;
+      opacity: .7;
+    }
+
+    .top-note {
+      color: var(--muted);
+    }
+
+    /* Header */
+    .page-header {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto 90px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: "Caveat", cursive;
+      font-size: 1.7rem;
+      transform: rotate(-3deg);
+      margin-bottom: 5px;
+    }
+
+    .page-title {
+      font-family: "Caveat", cursive;
+      font-size: clamp(4.5rem, 11vw, 8rem);
+      font-weight: 600;
+      line-height: .78;
+      letter-spacing: -.035em;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title::after {
+      content: "";
+      position: absolute;
+      left: 4%;
+      right: -3%;
+      bottom: -13px;
+      height: 12px;
+      border-bottom: 4px solid var(--ink);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+
+    .page-intro {
+      margin: 38px auto 0;
+      max-width: 560px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .doodle {
+      position: absolute;
+      font-family: "Caveat", cursive;
+      color: #777;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .star {
+      right: 6%;
+      top: 10px;
+      font-size: 2.5rem;
+      transform: rotate(12deg);
+    }
+
+    .spark {
+      left: 10%;
+      bottom: -10px;
+      font-size: 1.7rem;
+      transform: rotate(10deg);
+    }
+
+    /* Interest cards */
+    .interest-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .interest-card {
+      position: relative;
+      display: flex;
+      gap: 28px;
+      padding: 34px 38px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.035);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .interest-card:nth-child(1) { transform: rotate(-.6deg); }
+    .interest-card:nth-child(2) { transform: rotate(.6deg); }
+    .interest-card:nth-child(3) { transform: rotate(-.4deg); }
+
+    .interest-card:hover {
+      transform: translateY(-5px) rotate(0deg);
+      border-color: #bbb6a8;
+      box-shadow: 0 18px 40px rgba(0,0,0,.09);
+    }
+
+    .number-box {
+      width: 62px;
+      height: 62px;
+      flex: 0 0 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--ink);
+      border-radius: 10px 13px 9px 12px;
+      font-family: "Caveat", cursive;
+      font-size: 2.5rem;
+      background: var(--accent-soft);
+      transform: rotate(-3deg);
+    }
+
+    .interest-body {
+      flex: 1;
+    }
+
+    .interest-title {
+      font-family: "Caveat", cursive;
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .interest-points {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .interest-points li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.5;
+    }
+
+    .interest-points li::before {
+      content: "✦";
+      color: var(--accent);
+      font-size: .8rem;
+      flex: 0 0 auto;
+    }
+
+    .interest-points a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s ease, border-color .2s ease;
+    }
+
+    .interest-points a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    /* footer */
+    footer {
+      margin-top: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+    }
+
+    .hand {
+      font-family: "Caveat", cursive;
+      font-size: 1.35rem;
+      color: var(--ink);
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: 88vw;
+        padding-top: 28px;
+      }
+
+      .topbar {
+        margin-bottom: 45px;
+      }
+
+      .doodle {
+        display: none;
+      }
+
+      .page-header {
+        margin-bottom: 60px;
+      }
+
+      .interest-card {
+        flex-direction: column;
+        padding: 26px;
+      }
+
+      footer {
+        margin-top: 75px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .page-header,
+      .interest-card {
+        animation: fadeUp .7s ease both;
+      }
+
+      .interest-card:nth-child(2) { animation-delay: .1s; }
+      .interest-card:nth-child(3) { animation-delay: .2s; }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="topbar">
+      <a class="back-link" href="index.html">← Home</a>
+      <div class="top-note">Portfolio · 2026</div>
+    </div>
+
+    <section class="page-header">
+      <div class="doodle star">✦</div>
+      <div class="doodle spark">✎</div>
+
+      <div class="eyebrow">A few things I love</div>
+      <h1 class="page-title">Interests</h1>
+
+      <p class="page-intro">
+        The activities I keep coming back to, and what I've earned along the way.
+      </p>
+    </section>
+
+    <div class="interest-list">
+
+      <div class="interest-card">
+        <div class="number-box">1</div>
+        <div class="interest-body">
+          <div class="interest-title">Science Olympiad</div>
+          <ul class="interest-points">
+            <li><a href="SO1.html">Competing for 5 years</a></li>
+            <li><a href="SO2.html">School leadership</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="interest-card">
+        <div class="number-box">2</div>
+        <div class="interest-body">
+          <div class="interest-title">Tabla (Instrument)</div>
+          <ul class="interest-points">
+            <li><a href="T1.html">10+ years of experience performing</a></li>
+            <li><a href="T2.html">Played at the prestigious BMM Convention, an international event with 1000+ people</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="interest-card">
+        <div class="number-box">3</div>
+        <div class="interest-body">
+          <div class="interest-title">Karate</div>
+          <ul class="interest-points">
+            <li>2nd degree brown belt</li>
+            <li>5 years of training</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <span class="hand">made with curiosity ✦</span>
+      <span>© 2026</span>
+    </footer>
+
+  </main>
+</body>
+</html>
